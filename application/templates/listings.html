@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div class="container mb-4">
+    <h1>Room Listings Available</h1>
+    <div class="row">
+        {% for listing in listings %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if listing.images %}
+                <img src="{{ url_for('static', filename='uploads/' + listing.images[0].filename) }}" class="card-img-top" alt="{{ listing.title}}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ listing.title }}</h5>
+                    <p class="card-text">{{ listing.description }}</p>
+                    <p class="card-text"><strong>Price: ${{ listing.price }}</strong></p>
+                    <p class="card-text"><small class="text-muted">Listed by: {{ listing.user.first_name }}</small></p>
+                    <a href="{{ url_for('views.room_details', room_id=listing.id) }}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

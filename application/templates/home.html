@@ -1,0 +1,16 @@
+{%extends "base.html" %}
+
+{% block title %}Home{% endblock %} {% block content %}
+<h1>find your short term home</h1>
+
+{% if user.is_authenticated %}
+<p>You are logged in as {{ user.first_name }}.</p>
+{% else %}
+<p>Please <a href="{{ url_for('auth.login') }}">login</a> or <a href="{{ url_for('auth.sign_up') }}">sign up</a> to continue.</p>
+{% endif %}
+
+
+<!-- Any other content for the home page will be added here -->
+
+    <!-- JavaScript and other body elements here -->     
+{% endblock %}

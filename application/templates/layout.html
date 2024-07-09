@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Add your CSS and other head elements here -->
+</head>
+<body>
+    <nav>
+        <!--<a href="{{ url_for('views.home') }}">Home</a>-->
+        <a href="{{ url_for('views.listings') }}">Room Listings</a>
+        <a href="{{ url_for('views.create_listing') }}">Create Listing</a>
+        <a href="{{ url_for('auth.logout') }}">Logout</a>
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        {% if category == 'error' %}
+        <div class="alert alert-danger">{{ message }}</div>
+        {% else %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Add your JavaScript and other body elements here -->
+</body>
+</html>

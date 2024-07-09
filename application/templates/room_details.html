@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ room.title }} - Room Details{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ room.title }}</h1>
+<!-- section for image carousel-->
+    <div id="roomCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for image in room.images %}
+            <!--<div class="carousel-item {% if loop.first %}active{% endif %}">-->
+                <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" alt="Listing Image">
+    <!--</div>-->
+    {% endfor %}
+    </div>
+    <a class="carousel-control-prev" href="#roomCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#roomCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    </div>
+
+    <!--room details-->
+    <div class="mt-4">
+        <h2>Room Details</h2>
+        <p><strong>Price:</strong> ${{ room.price }} per night</p>
+        <p><strong>Description:</strong> {{ room.description }}</p>
+        <p><strong>Amenities:</strong> {{ room.amenities }}</p>
+        <!-- Add more room details needed -->
+    </div>
+</div>
+{% endblock %}
+
+
+
